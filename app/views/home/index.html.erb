@@ -1,0 +1,16 @@
+<h1>Welcome to wordside.ru</h1>
+
+<script language="JavaScript">
+function openSidebar() {
+  open("<%= sidebar_index_path %>", "Word Side",
+  "titlebar=no,screenX=10000,width=300,height=8000,status=no,toolbar=no,menubar=no,location=no,resizable=no");
+}
+</script>
+
+<p>The best helper for reading english texts at world wide web!</p>
+<br>
+
+<form name="form">
+  <input name="btnOpenSidebar" type="button"
+  value="Go!" onClick="openSidebar()">
+</form>

@@ -1,0 +1,10 @@
+<div>
+  <form>
+    <input name="query" type="text" size="39" method="POST">
+  </form>
+<% if @query %>
+  <h3 style="color: red"><%= @query %></h3>
+  <p><%= @translation.html_safe %></p>
+<% end %>
+  </div>
+
