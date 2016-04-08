@@ -11,10 +11,6 @@ class HomeController < ApplicationController
   	apply_changes if @apply
   end
 
-  def mail
-    TestMailer.send_test_letter(params[:email]).deliver_now
-  end
-
   private
 
   def apply_changes
