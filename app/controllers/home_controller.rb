@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  protect_from_forgery with: :exception unless %w(development test).include? Rails.env
 
   def index
   end
@@ -8,6 +9,10 @@ class HomeController < ApplicationController
   	@apply = params[:apply]
   	@selected_articles = Article.where("title LIKE '%\s#{@statement}'")
   	apply_changes if @apply
+  end
+
+  def mail
+    TestMailer.send_test_letter(params[:email]).deliver_now
   end
 
   private

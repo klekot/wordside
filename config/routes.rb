@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get 'sidebar/index'
+  get  'sidebar/index'
 
-  get 'home/index'
-  get 'home/edit'
+  get  'home/index'
+  #get  'home/edit'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

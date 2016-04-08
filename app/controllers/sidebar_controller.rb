@@ -7,7 +7,13 @@ class SidebarController < ApplicationController
     end
     if @query
       if all_queries.include? @query
-        @translation = format_response Article.find_by(title: @query).description
+        trans = format_response Article.find_by(title: @query).description
+        if trans.starts_with?("=")
+          title_alias = trans.gsub("= ", "").strip
+          @translation = format_response Article.find_by(title: title_alias).description
+        else
+          @translation = trans
+        end
       else
         @translation = "нет перевода"
       end
