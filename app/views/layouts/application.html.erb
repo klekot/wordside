@@ -2,14 +2,36 @@
 <html>
 <head>
   <title>Wordside</title>
+  <link href='http://fonts.googleapis.com/css?family=Freckle+Face' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Loved+by+the+King' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert" ><%= alert  %></p>
-<%= yield %>
+<%= render 'shared/navigation' %>
+<div id="wrapper">
+	<div id="header">
+	</div>
+	<div id="content">
+		<div class="jumbotron">
+			<div id="main-container" class="container-fluid">
+				<div class="row">
+					<div class="col-xs-12">
+						<%= yield %>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<footer class="center">
+			<p>2016 <%= "\xC2\xA9" %> Igor Klekotnev</p>
+		</footer>
+	</div>
+</div>
+
+
 
 </body>
 </html>

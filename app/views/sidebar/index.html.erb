@@ -1,10 +1,21 @@
-<div>
-  <form>
-    <input name="query" type="text" size="39" method="POST">
-  </form>
-<% if @query %>
-  <h3 style="color: red"><%= @query %></h3>
-  <p><%= @translation.html_safe %></p>
-<% end %>
-  </div>
+<style type="text/css">
+	nav {
+		display: none;
+	}
+</style>
 
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<form name="form" role="form">
+				<div class="form-inline">
+					<input class="form-control" name="query" type="text" size="39" method="POST">
+				</div>
+			</form>
+			<% if @query %>
+			  <h3 style="color: red"><%= @query %></h3>
+			  <p id="translation"><%= @translation.html_safe %></p>
+			<% end %>
+		</div>
+	</div>
+</div>
