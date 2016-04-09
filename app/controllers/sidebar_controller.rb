@@ -1,26 +1,32 @@
 class SidebarController < ApplicationController
   def index
     @query = params['query']
-    all_queries = []
-    Article.all.each do |article|
-      all_queries << article.title
-    end
     if @query
-      if all_queries.include? @query
-        trans = format_response Article.find_by(title: @query).description
-        if trans.starts_with?("=")
-          title_alias = trans.gsub("= ", "").strip
-          @translation = format_response Article.find_by(title: title_alias).description
-        else
-          @translation = trans
-        end
-      else
-        @translation = "нет перевода"
-      end
+      search @query
+    else
+      @translation = "нет перевода"
     end
   end
 
   private
+
+  def search(query)
+    @query = query
+    result = Article.where(title: @query)
+    @translation = {}   
+    if result.size > 0
+      result.each do |r|
+        key = r.title
+        val = format_response r.description
+        if val.starts_with?("=")
+          title_alias = val.gsub("= ", "").strip
+          @translation[key + " = " + title_alias] = format_response Article.find_by(title: title_alias).description
+        else
+          @translation[key] = val
+        end
+      end 
+    end
+  end
 
   def format_response(response)
 		response.gsub("(I)", "(I)<br>").gsub("(II)", "<br>(II)<br>")
