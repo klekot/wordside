@@ -184,6 +184,7 @@ DEPENDENCIES
   jquery-rails
   mina
   mysql2
+  nokogiri
   passenger
   rails (= 4.2.5)
   sass-rails (>= 3.2)

@@ -10,6 +10,9 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require_self
+ *= require_tree .
+ *
  */
 
 @import "bootstrap-sprockets";
@@ -56,23 +59,23 @@ em {
 }
 
 .jumbotron {
-	height: 400px;
+	height: 600px;
 	width: auto;
-	padding-top: 10px;
+	padding-top: -10px;
 	padding-left: 15px;
 	background-repeat: no-repeat;
 	color: black;
 
  	margin-top: -10px;
- 	background-image:url(/Users/igor/MyPrograms/rubyProgs/wordside/app/assets/images/lib_cat.jpg);
+ 	# background-image: image_path('lib_cat.jpg');
  	    
     background-color:transparent !important; 
 }
 
 .center {
-display: flex;
-justify-content: center;
-align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 #translation {
 	font-size: 14px;
