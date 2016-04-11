@@ -2,9 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.eng-word {
+	font-weight: bold;
+}
+
+.rus-word {
+	font-weight: bolder;
+	color: grey;
+}
+
 .serv-word-blue {
 	color: blue;
 	font-weight: bold;
+}
+
+.serv-word-blue-italic {
+	color: blue;
+	#font-weight: bold;
+	font-style: italic;
 }
 
 .serv-word-green {
@@ -15,4 +30,18 @@
 .serv-word-orange {
 	color: orange;
 	font-weight: bold;
+}
+
+.serv-word-violet {
+	color: violet;
+	font-weight: bold;
+}
+
+.serv-word-sienna {
+	color: sienna;
+	font-weight: bold;
+}
+
+.serv-word-teal {
+	color: teal;
 }

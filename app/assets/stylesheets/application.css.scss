@@ -59,15 +59,15 @@ em {
 }
 
 .jumbotron {
-	height: 200px;
+	height: 600px;
 	width: auto;
-	padding-top: 10px;
-	padding-left: 15px;
+	#padding-top: -30px;
+	#padding-left: 15px;
 	background-repeat: no-repeat;
 	color: black;
 
  	margin-top: -10px;
- 	# background-image: image_path('lib_cat.jpg');
+ 	#background-image: url(lib_cat.jpg);
  	    
     background-color:transparent !important; 
 }
@@ -76,6 +76,7 @@ em {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 50px;
 }
 #translation {
 	font-size: 14px;
