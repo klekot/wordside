@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'jokes/make_allright'
+
+  get 'jokes/overcome_laziness'
+
+  get 'jokes/become_a_cat'
+
   get  'sidebar/index'
 
   get  'home/index'
