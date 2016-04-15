@@ -23,6 +23,10 @@ body {
 	margin:0;
 	padding:0;
 	height:100%;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
 }
 
 #wrapper {
@@ -36,13 +40,16 @@ body {
 }
 
 #content {
-	padding-bottom:100px; /* Height of the footer element */
+	padding-bottom:10px; /* Height of the footer element */
 }
 
 #footer {
-	margin-top: 200px;
  	background:#ffffff;
  	color: #cccccc;
+ 	position: relative;
+	margin-top: -150px; /* negative value of footer height */
+	height: 50px;
+	clear:both;
 }
 
 h1 {
@@ -55,7 +62,7 @@ em {
 }
 
 .jumbotron {
-	height: 600px;
+	height: 100px;
 	width: auto;
 	padding-top: 0px;
 	padding-bottom: 0px;

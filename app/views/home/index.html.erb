@@ -1,7 +1,20 @@
 <script language="JavaScript">
+var countOfDescriptionClicked = 0;
+
 function openSidebar() {
   	open("<%= sidebar_index_path %>", "Word Side",
-  	"titlebar=no,screenX=10000,width=300,height=8000,status=no,toolbar=no,menubar=no,location=no,resizable=no");
+  	"titlebar=no,screenX=10000,width=300,height=window.screen.availHeight,status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=1");
+}
+
+function growFooterPadding() {
+	if (countOfDescriptionClicked%2 == 0) {
+		document.getElementById("footer").style.margin = "100px 0px 0px 0px";
+		countOfDescriptionClicked ++;
+	} else {
+		document.getElementById("footer").style.margin = "0px 0px 0px 0px";
+		countOfDescriptionClicked ++;
+	}
+	
 }
 </script>
 <div class="alert alert-danger" role="alert">	
@@ -16,8 +29,7 @@ function openSidebar() {
 <div class="jumbotron">
 	<div class="center">
 	  <h1>
-	  	<span style="color: red;">W</span><span style="color: green;">e</span><span style="color: yellow;">l</span><span style="color: blue;">c</span><span style="color: black;">o</span><span style="color: green;">m</span><span style="color: red;">e </span><span style="color: #345;">t</span><span style="color: #934;">o </span><span style="color: #194;">W</span><span style="color: #210;">o</span><span style="color: #695;">r</span><span style="color: #ff2;">d</span><span style="color: red;">S</span>
-		<span style="color: #ff4;">i</span><span style="color: #00f;">d</span><span style="color: orange;">e</span><span style="color: #cc4;">.</span><span style="color: blue;">r</span><span style="color: #ed6;">u</span>
+	  	<span style="color: red;">W</span><span style="color: green;">e</span><span style="color: yellow;">l</span><span style="color: blue;">c</span><span style="color: black;">o</span><span style="color: green;">m</span><span style="color: red;">e </span><span style="color: #345;">t</span><span style="color: #934;">o </span><span style="color: #194;">W</span><span style="color: #210;">o</span><span style="color: #695;">r</span><span style="color: #ff2;">d</span><span style="color: red;">S</span><span style="color: #ff4;">i</span><span style="color: #00f;">d</span><span style="color: orange;">e</span><span style="color: #cc4;">.</span><span style="color: blue;">r</span><span style="color: #ed6;">u</span>
 	  </h1>
 	</div>
 
@@ -30,18 +42,17 @@ function openSidebar() {
 
 	<br>
 	<div class="center">
-	  	<!--<p><em>The best russian helper for remembering english words!</em></p>-->
-	  	<a class="link link-description" role="text" data-toggle="collapse" href="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription">
+	  	<a class="link link-description" role="text" data-toggle="collapse" href="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription" onClick="growFooterPadding()" >
 	  	  Что будет если нажать на красную кнопку?
 	  	</a>
 	</div>
-
 	<div class="collapse" id="collapseDescription">
 	  <div class="well well-lg">
-	  	<p class="description" style="font-size: 16px;">Прежде всего, убедитесь, что ваш браузер не в полноэкранном режиме. При нажати на кнопку справа откроется узкое вертикальное окно браузера, в котором вы увидите обычное текстовое поле. В него вы можете вводить незнакомые английские слова, встречаемые вами при чтении текста в основном окне браузера, а в ответ получать варианты перевода.<br>В качестве базы для перевода используется <b>Англо-Русский Словарь под ред. Мюллера "66.000 слов + СПИСОК ЛИЧНЫХ ИМЕН" Издание 24, исправленное Москва, "Русский язык", 1995 г. OCR Палек, 1998 г.</b> Кроме того, когда Мюллер не справляется, на помошь приходит <a href="http://api.yandex.ru/dictionary/">"API Яндекс.Словаря"</a>.<br>Для большего удобства мы рекомендуем вам отодвинуть правый край основного окна вашего браузера ровно на триста пикселей влево и тогда использование <b>
-		<span style="color: #194;">W</span><span style="color: #210;">o</span><span style="color: #695;">r</span><span style="color: #cc4;">d</span><span style="color: red;">S</span><span style="color: #ff4;">i</span><span style="color: #00f;">d</span><span style="color: orange;">e</span>
-	  	</b> станет максимально комфортным! So, press the button and have a nice translating!</p> 
+	  	<p class="description" style="font-size: 16px;">
+		  	Прежде всего, убедитесь, что ваш браузер не в полноэкранном режиме. При нажати на кнопку справа откроется узкое вертикальное окно браузера, в котором вы увидите обычное текстовое поле. В него вы можете вводить незнакомые английские слова, встречаемые вами при чтении текста в основном окне браузера, а в ответ получать варианты перевода.<br>В качестве базы для перевода используется <b>Англо-Русский Словарь под ред. Мюллера "66.000 слов + СПИСОК ЛИЧНЫХ ИМЕН" Издание 24, исправленное Москва, "Русский язык", 1995 г. OCR Палек, 1998 г.</b> Кроме того, когда Мюллер не справляется, на помошь приходит <a href="http://api.yandex.ru/dictionary/">"API Яндекс.Словаря"</a>.<br>Для большего удобства мы рекомендуем вам отодвинуть правый край основного окна вашего браузера ровно на триста пикселей влево и тогда использование <b>
+			<span style="color: #194;">W</span><span style="color: #210;">o</span><span style="color: #695;">r</span><span style="color: #cc4;">d</span><span style="color: red;">S</span><span style="color: #ff4;">i</span><span style="color: #00f;">d</span><span style="color: orange;">e</span>
+		  	</b> станет максимально комфортным! So, press the button and have a nice translating!
+	  	</p> 
 	  </div>
 	</div>
 </div>
-
