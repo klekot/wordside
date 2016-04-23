@@ -11,7 +11,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :domain, 'k1i.ru'
-set :deploy_to, '/home/deploy/www/wordside'
+set :deploy_to, '/home/wordside/www/wordside.ru'
 set :repository, 'https://github.com/klekot/wordside.git'
 set :branch, 'master'
 
@@ -23,7 +23,7 @@ set :branch, 'master'
 set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'log']
 
 # Optional settings:
-set :user, 'deploy'    # Username in the server to SSH to.
+set :user, 'wordside'    # Username in the server to SSH to.
 #   set :port, '30000'     # SSH port number.
 #   set :forward_agent, true     # SSH forward_agent.
 

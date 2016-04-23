@@ -39,9 +39,17 @@ class SidebarController < ApplicationController
       #@translation = translation
       yandex_api_key = "dict.1.1.20150909T192757Z.a7faa86c794ef318.30842ee89a25dc7e5d02fc1c8562110f5d856a59";
       yandex_query = "https://dictionary.yandex.net/api/v1/dicservice/lookup?key="+yandex_api_key+"&lang=en-ru&text="+@query
-      @translation[@query] = Nokogiri::XML(open(yandex_query)).to_s
+      result = Nokogiri::XML(open(yandex_query))
+      @translation[@query] = format_response_xml result
     else
       flash[:alert] = "Для этой формы допустимы только символы английского алфавита!"
+    end
+  end
+
+  def format_response_xml(xml_result)
+    xml_result.xpath("//def").each do |d|
+      defs = Hash.new
+      defs[]
     end
   end
 
@@ -92,6 +100,7 @@ class SidebarController < ApplicationController
     .gsub("^Syn: ",    "<br><span class=\"serv-word-violet\">Синонимы: </span>")
     .gsub("^Ant: ",    "<br><span class=\"serv-word-sienna\">Антонимы: </span>")
     .gsub("adv.",    "<span class=\"serv-word-blue-italic\"> наречие: </span>")
+    .gsub("prov.",    "<span class=\"serv-word-blue-italic\"> Поговорка: </span>")
     .gsub("^adv.",    "<span class=\"serv-word-blue-italic\"> наречие: </span>")
     .gsub("v.",    "<span class=\"serv-word-blue-italic\">глагол: </span>")
     .gsub("v.;",    "<span class=\"serv-word-blue-italic\">глагол: </span>")
@@ -109,6 +118,7 @@ class SidebarController < ApplicationController
     .gsub("^adj.",    "<span class=\"serv-word-blue-italic\"> имя прилагательное: </span>")
     .gsub("attr.",    "<span class=\"serv-word-teal\"> (свойство) </span>")
     .gsub("abbr. of",    "<span class=\"serv-word-teal\"> сокращение от </span>")
+    .gsub("coll.",    "<span class=\"serv-word-teal\"> (в переносном смысле) </span>")
     .gsub(".;<br>",      ".;")
 	end
 
