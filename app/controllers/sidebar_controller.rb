@@ -47,10 +47,7 @@ class SidebarController < ApplicationController
   end
 
   def format_response_xml(xml_result)
-    xml_result.xpath("//def").each do |d|
-      defs = Hash.new
-      defs[]
-    end
+    xml_result.xpath("//def").inner_text
   end
 
   def format_response(response)
