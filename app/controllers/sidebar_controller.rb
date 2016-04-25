@@ -55,7 +55,7 @@ class SidebarController < ApplicationController
     if @@eng_alphabet.include? query.chr
       @query = query
       #@translation = translation
-      yandex_api_key = "dict.1.1.20150909T192757Z.a7faa86c794ef318.30842ee89a25dc7e5d02fc1c8562110f5d856a59";
+      yandex_api_key = ENV["yandex_api_key"];
       yandex_query = "https://dictionary.yandex.net/api/v1/dicservice/lookup?key="+yandex_api_key+"&lang=en-ru&text="+@query
       result = Nokogiri::XML(open(yandex_query))
       @translation[@query] = format_response_xml result

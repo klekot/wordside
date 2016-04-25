@@ -49,9 +49,10 @@ task :setup => :environment do
   queue! %[mkdir -p "#{deploy_to}/#{shared_path}/config"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config"]
 
+  queue! %[touch "#{deploy_to}/#{shared_path}/config/application.yml"]
   queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
   queue! %[touch "#{deploy_to}/#{shared_path}/config/secrets.yml"]
-  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml' and 'secrets.yml'."]
+  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml', 'secrets.yml' and 'application.yml'."]
 
   if repository
     repo_host = repository.split(%r{@|://}).last.split(%r{:|\/}).first
