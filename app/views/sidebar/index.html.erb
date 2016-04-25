@@ -28,12 +28,23 @@
 			<form name="form" role="form">
 				<div class="form-inline">
 					<input class="form-control" name="query" type="text" size="39" method="POST">
+					<!--<br>
+					<input name="advanced" type="checkbox"> Расширенный поиск</input>-->
 				</div>
 			</form>
 			<% if @query %>
 				<% @translation.each_pair do |key, val| %>
-					<h3 style="color: red"><%= key %></h3>
-				  	<p id="translation"><%= val.html_safe %></p>
+					<% unless @transcription.nil? %>
+						<h3 style="color: red"><%= key %></h3>
+						<h4 style="color: orange"><%= "[" + @transcription.to_s + "]" %></h4>
+					<% else %>
+						<h3 style="color: red"><%= key %></h3>
+					<% end %>
+					<% unless val.nil? %>
+				  		<p id="translation"><%= val.html_safe %></p>
+				  	<% else %>
+				  		<p id="translation">Перевод для вашего запроса отсутствует в нашем словаре :( <br>Если запос состоит из нескольких слов (например, вам нужен перевод модального глагола или сленгового выражения), попробуйте переформулировать запрос иначе. Может быть и найдется что-нибудь...</p>
+				  	<% end %>
 				<% end %>
 			<% end %>
 		</div>

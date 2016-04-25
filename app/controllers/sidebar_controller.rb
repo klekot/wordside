@@ -7,6 +7,7 @@ class SidebarController < ApplicationController
 
   def index
     @query = params['query']
+    @advanced = params['advanced']
     search @query if @query
   end
 
@@ -14,22 +15,39 @@ class SidebarController < ApplicationController
 
   def search(query)
     @query = query
-    result = Article.where(title: @query)
-    @translation = {}   
-    if result.size > 0
-      result.each do |r|
-        key = r.title
-        val = format_response language_colorize r.description
-        if val.starts_with?("=")
-          title_alias = val.gsub("= ", "").strip
-          @translation[key + " = " + title_alias] = format_response Article.find_by(title: title_alias).description
-        else
-          yandex(@query)
-          @translation[key] = val
-        end
-      end 
+    unless @advanced == 'on'
+      result = Article.where(title: @query)
+      @translation = {}   
+      if result.size > 0
+        result.each do |r|
+          key = r.title
+          val = format_response language_colorize r.description
+          if val.starts_with?("=")
+            title_alias = val.gsub("= ", "").strip
+            @translation[key + " = " + title_alias] = format_response Article.find_by(title: title_alias).description
+          else
+            yandex(@query)
+            @translation[key] = val
+          end
+        end 
+      else
+        yandex(@query)
+      end
     else
-      yandex(@query)
+      result = Article.where("description LIKE ? ", "%#{@query}%")
+      if result.size > 0
+        @translation = []
+        result.each do |r|
+          translation_hash = {} 
+          key = r.title
+          val = format_response language_colorize r.description
+          translation_hash[key] = val
+          @translation.push translation_hash
+        end
+        @translation
+      else
+        yandex(@query)
+      end
     end
   end
 
@@ -47,7 +65,81 @@ class SidebarController < ApplicationController
   end
 
   def format_response_xml(xml_result)
-    xml_result.xpath("//def").inner_text
+    unless xml_result.nil?
+      if Hash.from_xml(xml_result.to_s)["DicResult"]["def"].is_a? Hash
+        @transcription = Hash.from_xml(xml_result.to_s)["DicResult"]["def"]["ts"].to_s
+        tr_hash = Hash.from_xml(xml_result.to_s)["DicResult"]["def"]["tr"]
+        if tr_hash.is_a? Hash
+          if tr_hash["syn"].is_a? Array
+            syns = []
+            tr_hash["syn"].each do |syn|
+              syns.push ", " + syn["text"]
+            end
+            output_html = "<p>(" + tr_hash["pos"] + ") " + tr_hash["text"] + syns.join("")  + "</p>"
+          else
+            output_html = "<p>(" + tr_hash["pos"] + ") " + tr_hash["text"] + ", " + tr_hash["syn"]["text"] + "</p>"
+          end
+        elsif tr_hash.is_a? Array
+          output_html = []
+          tr_hash.each do |tr|
+            if tr["syn"].is_a? Array
+              syns = []
+              tr["syn"].each do |syn|
+                syns.push ", " + syn["text"]
+              end
+              output_html.push "<p>(" + tr["pos"] + ") " + tr["text"] + syns.join("")  + "</p>"
+            else
+              output_html.push "<p>(" + tr["pos"] + ") " + tr["text"] + "</p>"
+            end
+            output_html.join("<br>")
+          end
+        end
+      elsif Hash.from_xml(xml_result.to_s)["DicResult"]["def"].is_a? Array
+        @transcription = Hash.from_xml(xml_result.to_s)["DicResult"]["def"][0]["ts"].to_s
+        output_html = []
+        Hash.from_xml(xml_result.to_s)["DicResult"]["def"].each do |def_tag|
+          if def_tag["tr"].is_a? Hash
+            syns = []
+            unless def_tag["tr"]["syn"].nil?
+              if def_tag["tr"]["syn"].is_a? Array
+                def_tag["tr"]["syn"].each do |syn|
+                  syns.push ", " + syn["text"]
+                end
+                output_html.push "<p>(" + def_tag["tr"]["pos"] + ") " + def_tag["tr"]["text"] +
+                syns.join("")  + "</p>"
+              else
+                syns.push ", " + def_tag["tr"]["syn"]["text"]
+                output_html.push "<p>(" + def_tag["tr"]["pos"] + ") " + def_tag["tr"]["text"] +
+                syns.join("")  + "</p>"
+              end
+            else
+              output_html.push "<p>(" + def_tag["tr"]["pos"] + ") " + def_tag["tr"]["text"]  + "</p>"
+            end
+          else
+            def_tag["tr"].each do |tr|
+              syns = []
+              if tr["syn"].is_a? Array
+                unless tr["syn"].nil?
+                  tr["syn"].each do |syn|
+                    syns.push ", " + syn["text"]
+                  end
+                  output_html.push "<p>(" + tr["pos"] + ") " + tr["text"] + syns.join("")  + "</p>"
+                else
+                  output_html.push "<p>(" + tr["pos"] + ") " + tr["text"]  + "</p>"
+                end
+              else
+                unless tr["syn"].nil?
+                  output_html.push "<p>(" + tr["pos"] + ") " + tr["text"] + tr["syn"]["text"]  + "</p>"
+                else
+                  output_html.push "<p>(" + tr["pos"] + ") " + tr["text"]  + "</p>"
+                end
+              end
+            end
+          end
+        end
+        output_html.join("<br>")
+      end
+    end
   end
 
   def format_response(response)
@@ -116,6 +208,7 @@ class SidebarController < ApplicationController
     .gsub("attr.",    "<span class=\"serv-word-teal\"> (свойство) </span>")
     .gsub("abbr. of",    "<span class=\"serv-word-teal\"> сокращение от </span>")
     .gsub("coll.",    "<span class=\"serv-word-teal\"> (в переносном смысле) </span>")
+    .gsub("pl.",    "<span class=\"serv-word-teal\"> (множественное число) </span>")
     .gsub(".;<br>",      ".;")
 	end
 
