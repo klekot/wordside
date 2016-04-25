@@ -47,8 +47,8 @@ body {
  	background:#ffffff;
  	color: #cccccc;
  	position: relative;
-	margin-top: -150px; /* negative value of footer height */
-	height: 50px;
+	margin-top: 0px; /* negative value of footer height */
+	height: 0px;
 	clear:both;
 }
 
@@ -81,7 +81,6 @@ em {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-bottom: 50px;
 }
 #translation {
 	font-size: 14px;
