@@ -41,7 +41,19 @@
 						<h3 style="color: red"><%= key %></h3>
 					<% end %>
 					<% unless val.nil? %>
-				  		<p id="translation"><%= val.html_safe %></p>
+						<% if val.is_a? Array %>
+							<p id="translation">
+							<% val.each do |val_tag| %>
+								<% unless val_tag == val.last %>
+									<%= val_tag["text"].html_safe + ", " %>
+								<% else %>
+									<%= val_tag["text"].html_safe + "." %>
+								<% end %>
+							<% end %>
+							</p>
+						<% else %>
+							<p id="translation"><%= val.html_safe %></p>
+						<% end %>
 				  	<% else %>
 				  		<p id="translation">Перевод для вашего запроса отсутствует в нашем словаре :( <br>Если запос состоит из нескольких слов (например, вам нужен перевод модального глагола или сленгового выражения), попробуйте переформулировать запрос иначе. Может быть и найдется что-нибудь...</p>
 				  	<% end %>
