@@ -76,8 +76,10 @@ class SidebarController < ApplicationController
               syns.push ", " + syn["text"]
             end
             output_html = "<p>(" + tr_hash["pos"] + ") " + tr_hash["text"] + syns.join("")  + "</p>"
-          else
+          elsif tr_hash["syn"].is_a? Hash
             output_html = "<p>(" + tr_hash["pos"] + ") " + tr_hash["text"] + ", " + tr_hash["syn"]["text"] + "</p>"
+          else
+            output_html = "<p>(" + tr_hash["pos"] + ") " + tr_hash["text"] + "</p>"
           end
         elsif tr_hash.is_a? Array
           output_html = []
