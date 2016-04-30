@@ -4,19 +4,23 @@
 		display: none;
 	}
 
-	#footer {
-		display: none;
-	}
 
-	.jumbotron {
+
+	#wrapper {
 		padding-top: 0px;
-		padding-bottom: 0px;
-		padding-left: 0px;
-		padding-right: 0px;
+		position:relative;
 	}
 </style>
+
 <!-- this style block must be placed here to prevent overriding from application.css -->
 <div class="container">
+<div class="row">
+	<div class="col-xs-12">
+	<div class="center" style="padding-top: 10px; padding-bottom: 10px;">
+	    <%= image_tag image_path('logo3.png') %>
+	    </div>
+	</div>
+	</div>
 	<div class="row">
 		<div class="col-xs-12 scrolled-y">
 		<% if flash[:alert] %>
@@ -36,7 +40,7 @@
 				<% @translation.each_pair do |key, val| %>
 					<% unless @transcription.nil? %>
 						<h3 style="color: red"><%= key %></h3>
-						<h4 style="color: orange"><%= "[" + @transcription.to_s + "]" %></h4>
+						<h3 style="color: orange"><%= "[" + @transcription.to_s + "]" %></h3>
 					<% else %>
 						<h3 style="color: red"><%= key %></h3>
 					<% end %>

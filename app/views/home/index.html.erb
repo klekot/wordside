@@ -5,44 +5,28 @@ function openSidebar() {
   	open("<%= sidebar_index_path %>", "Word Side",
   	"titlebar=no,screenX=10000,width=300,height=window.screen.availHeight,status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=no");
 }
-
-function growFooterPadding() {
-	if (countOfDescriptionClicked%2 == 0) {
-		document.getElementById("footer").style.margin = "100px 0px 0px 0px";
-		countOfDescriptionClicked ++;
-	} else {
-		document.getElementById("footer").style.margin = "0px 0px 0px 0px";
-		countOfDescriptionClicked ++;
-	}
-	
-}
 </script>
-<div class="alert alert-danger" role="alert">	
-	<p style="font-size: 14px;">
-	<strong>Объявление: </strong>Сайт работает в режиме "альфа-тестирования", поэтому многие функции и детали интерфейса
-	могут измениться, появиться или исчезнуть :) Просьба не рассматривать это приложение как
-	завершённый продукт. Благодарим за внимание!
-	</p>
-</div>
+
 <p class="notice"><%= notice %></p>
 <p class="alert" ><%= alert  %></p>
-<div class="jumbotron">
+
 	<div class="center">
 	  <h1>
 	  	<span style="color: red;">W</span><span style="color: green;">e</span><span style="color: yellow;">l</span><span style="color: blue;">c</span><span style="color: black;">o</span><span style="color: green;">m</span><span style="color: red;">e </span><span style="color: #345;">t</span><span style="color: #934;">o </span><span style="color: #194;">W</span><span style="color: #210;">o</span><span style="color: #695;">r</span><span style="color: #ff2;">d</span><span style="color: red;">S</span><span style="color: #ff4;">i</span><span style="color: #00f;">d</span><span style="color: orange;">e</span><span style="color: #cc4;">.</span><span style="color: blue;">r</span><span style="color: #ed6;">u</span>
 	  </h1>
 	</div>
 
-	<div class="center">
+	<div class="center open-button">
 	    <p>   	
 	    <label for="openWordSide" class="btn btn-lg btn-danger">Открыть WordSide  <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></label>	    
 	  	<input id="openWordSide" class="hidden" name="btnOpenSidebar" type="button" value="Открыть WordSide" onClick="openSidebar()">		
 	    </p>
 	</div>
 
+
 	<br>
 	<div class="center">
-	  	<a class="link link-description" role="text" data-toggle="collapse" href="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription" onClick="growFooterPadding()" >
+	  	<a class="link link-description" role="text" data-toggle="collapse" href="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription" >
 	  	  Что будет если нажать на красную кнопку?
 	  	</a>
 	</div>
@@ -54,5 +38,11 @@ function growFooterPadding() {
 		  	</b> станет максимально комфортным! So, press the button and have a nice translating!
 	  	</p> 
 	  </div>
+	  <div class="alert alert-danger" role="alert">	
+	  	<p style="font-size: 14px;">
+	  	<strong>Объявление: </strong>Сайт работает в режиме "альфа-тестирования", поэтому многие функции и детали интерфейса
+	  	могут измениться, появиться или исчезнуть :) Просьба не рассматривать это приложение как
+	  	завершённый продукт. Благодарим за внимание!
+	  	</p>
+	  </div>
 	</div>
-</div>

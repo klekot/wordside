@@ -7,7 +7,7 @@
 }
 
 .link-description {
-	font-family: 'Open Sans Condensed', sans-serif;
+	font-family: 'Neucha', sans-serif;
 	font-size: 26px;
 	text-decoration: underline;
 	color: orange;
@@ -15,4 +15,14 @@
 
 .navbar-brand {
 	margin-top: -6px;
+}
+
+.open-button {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#collapseDescription {
+	margin-bottom: 30px;
+	overflow: auto;
 }

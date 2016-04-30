@@ -6,6 +6,7 @@
   <link href='https://fonts.googleapis.com/css?family=Loved+by+the+King' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Neucha&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  <link rel="shortcut icon" href="favicon.ico">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -13,8 +14,6 @@
 <body>
 <%= render 'shared/navigation' %>
 <div id="wrapper">
-	<div id="header">
-	</div>
 	<div id="content">
 		<div id="main-container" class="container-fluid">
 			<div class="row">
@@ -28,9 +27,13 @@
 	</div>
 	
 </div>
+
 <div id="footer">
-	<footer class="center">
+	<footer class="container center">
+	<div style="display: block; text-align: center;">
 		<p>2016 <%= "\xC2\xA9" %> Igor Klekotnev</p>
+		<p><a href="mailto:klekotnev@gmail.com?Subject=From wordside.ru" target="_top" style="color: #cccccc;">Написать автору</a></p>
+		</div>
 	</footer>
 </div>
 

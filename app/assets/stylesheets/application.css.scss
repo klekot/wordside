@@ -18,6 +18,38 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+
+/* responsive text queries */
+@media screen and (max-width: 30000px) {
+  p,.btn,input,div,span,h4 {
+    font-size: 100%;
+  }
+  h1 {
+  font-family: 'Freckle Face', cursive;
+    font-size: 7em;  
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  p,.btn,input,div,span,h4 {
+    font-size: 95%;
+  }
+  h1 {
+  font-family: 'Freckle Face', cursive;
+    font-size: 7em;  
+  }
+}
+
+@media screen and (max-width: 768px) {
+  p,.btn,input,div,span,h4 {
+    font-size: 90%;
+  }
+  h1 {
+    font-size: 6em;  
+  }
+}
+
 html,
 body {
 	margin:0;
@@ -30,7 +62,7 @@ body {
 }
 
 #wrapper {
-	min-height:100%;
+	padding-top: 50px;
 	position:relative;
 }
 
@@ -46,35 +78,15 @@ body {
 #footer {
  	background:#ffffff;
  	color: #cccccc;
- 	position: relative;
-	margin-top: 0px; /* negative value of footer height */
-	height: 0px;
+	height: 20px;
 	clear:both;
-}
-
-h1 {
-	font-family: 'Freckle Face', cursive; 
+	position: relative;
+	margin-top: 100px;
 }
 
 em {
 	font-family: 'Loved by the King', cursive;
 	font-size: 24px;
-}
-
-.jumbotron {
-	height: 100px;
-	width: auto;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	padding-left: 0px;
-	padding-right: 0px;
-	background-repeat: no-repeat;
-	color: black;
-
- 	margin-top: -10px;
- 	#background-image: url(lib_cat.jpg);
- 	    
-    background-color:transparent !important; 
 }
 
 .center {
@@ -83,5 +95,5 @@ em {
 	align-items: center;
 }
 #translation {
-	font-size: 14px;
+	font-size: 16px;
 }

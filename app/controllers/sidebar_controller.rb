@@ -27,15 +27,13 @@ class SidebarController < ApplicationController
             unless Article.find_by(title: title_alias).nil?
               @translation[key + " = " + title_alias] = format_response Article.find_by(title: title_alias).description
             else
-              yandex(@query)
-              
-              
+              yandex(@query)         
             end
           else
             yandex(@query)
             @translation[key] = val
           end
-        end 
+        end
       else
         yandex(@query)
       end
