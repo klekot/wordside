@@ -24,7 +24,13 @@ class SidebarController < ApplicationController
           val = format_response language_colorize r.description
           if val.starts_with?("=")
             title_alias = val.gsub("= ", "").strip
-            @translation[key + " = " + title_alias] = format_response Article.find_by(title: title_alias).description
+            unless Article.find_by(title: title_alias).nil?
+              @translation[key + " = " + title_alias] = format_response Article.find_by(title: title_alias).description
+            else
+              yandex(@query)
+              
+              
+            end
           else
             yandex(@query)
             @translation[key] = val
