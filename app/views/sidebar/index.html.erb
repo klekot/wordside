@@ -1,68 +1,77 @@
-<!-- this style block must be placed here to prevent overriding from application.css -->
-<style type="text/css">
-	nav {
-		display: none;
-	}
+<div id="wrapper">
+	<div id="content">
+		<div id="main-container" class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- this style block must be placed here to prevent overriding from application.css -->
+					<style type="text/css">
+						nav {
+							display: none;
+						}
+						#wrapper {
+							padding-top: 0px;
+							position:relative;
+						}
+					</style>
 
-
-
-	#wrapper {
-		padding-top: 0px;
-		position:relative;
-	}
-</style>
-
-<!-- this style block must be placed here to prevent overriding from application.css -->
-<div class="container">
-<div class="row">
-	<div class="col-xs-12">
-	<div class="center" style="padding-top: 10px; padding-bottom: 10px;">
-	    <%= image_tag image_path('logo3.png') %>
-	    </div>
-	</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12 scrolled-y">
-		<% if flash[:alert] %>
-		    <div class="alert alert-danger alert-dismissible fade in">
-		    	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
-		    	<%= flash[:alert] %>
-		    </div>
-		<% end %>
-			<form name="form" role="form">
-				<div class="form-inline">
-					<input class="form-control" name="query" type="text" size="39" method="POST">
-					<!--<br>
-					<input name="advanced" type="checkbox"> Расширенный поиск</input>-->
-				</div>
-			</form>
-			<% if @query %>
-				<% @translation.each_pair do |key, val| %>
-					<% unless @transcription.nil? %>
-						<h3 style="color: red"><%= key %></h3>
-						<h3 style="color: orange"><%= "[" + @transcription.to_s + "]" %></h3>
-					<% else %>
-						<h3 style="color: red"><%= key %></h3>
-					<% end %>
-					<% unless val.nil? %>
-						<% if val.is_a? Array %>
-							<p id="translation">
-							<% val.each do |val_tag| %>
-								<% unless val_tag == val.last %>
-									<%= val_tag["text"].html_safe + ", " %>
-								<% else %>
-									<%= val_tag["text"].html_safe + "." %>
-								<% end %>
+					<!-- this style block must be placed here to prevent overriding from application.css -->
+					<div class="container">
+					<div class="row">
+						<div class="col-xs-12">
+						<div class="center" style="padding-top: 10px; padding-bottom: 10px;">
+							<%= link_to root_path, target: '_blank' do %>
+								<%= image_tag image_path('logo3.png') %>
 							<% end %>
-							</p>
-						<% else %>
-							<p id="translation"><%= val.html_safe %></p>
-						<% end %>
-				  	<% else %>
-				  		<p id="translation">Перевод для вашего запроса отсутствует в нашем словаре :( <br>Если запос состоит из нескольких слов (например, вам нужен перевод модального глагола или сленгового выражения), попробуйте переформулировать запрос иначе. Может быть и найдется что-нибудь...</p>
-				  	<% end %>
-				<% end %>
-			<% end %>
+						</div>
+						</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 scrolled-y">
+							<% if flash[:alert] %>
+							    <div class="alert alert-danger alert-dismissible fade in">
+							    	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+							    	<%= flash[:alert] %>
+							    </div>
+							<% end %>
+								<form name="form" role="form">
+									<div class="form-inline">
+										<input class="form-control" name="query" type="text" size="39" method="POST">
+										<!--<br>
+										<input name="advanced" type="checkbox"> Расширенный поиск</input>-->
+									</div>
+								</form>
+								<% if @query %>
+									<% @translation.each_pair do |key, val| %>
+										<% unless @transcription.nil? %>
+											<h3 style="color: red"><%= key %></h3>
+											<h3 style="color: orange"><%= "[" + @transcription.to_s + "]" %></h3>
+										<% else %>
+											<h3 style="color: red"><%= key %></h3>
+										<% end %>
+										<% unless val.nil? %>
+											<% if val.is_a? Array %>
+												<p id="translation">
+												<% val.each do |val_tag| %>
+													<% unless val_tag == val.last %>
+														<%= val_tag["text"].html_safe + ", " %>
+													<% else %>
+														<%= val_tag["text"].html_safe + "." %>
+													<% end %>
+												<% end %>
+												</p>
+											<% else %>
+												<p id="translation"><%= val.html_safe %></p>
+											<% end %>
+									  	<% else %>
+									  		<p id="translation">Перевод для вашего запроса отсутствует в нашем словаре :( <br>Если запос состоит из нескольких слов (например, вам нужен перевод модального глагола или сленгового выражения), попробуйте переформулировать запрос иначе. Может быть и найдется что-нибудь...</p>
+									  	<% end %>
+									<% end %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
 		</div>
 	</div>
 </div>
