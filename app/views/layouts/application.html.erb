@@ -18,25 +18,12 @@
 		<div id="main-container" class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12">
-					
-						<%= yield %>
-					
+					<%= yield %>
 				</div>
-			</div>	
+			</div>
 		</div>
 	</div>
-	
 </div>
-
-<div id="footer">
-	<footer class="container center">
-	<div style="display: block; text-align: center;">
-		<p>2016 <%= "\xC2\xA9" %> Igor Klekotnev</p>
-		<p><a href="mailto:klekotnev@gmail.com?Subject=From wordside.ru" target="_top" style="color: #cccccc;">Написать автору</a></p>
-		</div>
-	</footer>
-</div>
-
-
+<%= render 'shared/footer' %>
 </body>
 </html>
