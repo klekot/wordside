@@ -1,4 +1,4 @@
-require 'mina/bundler'
+require 'mina/bundlr'
 require 'mina/rails'
 require 'mina/git'
 # require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
@@ -10,8 +10,8 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :domain, 'k1i.ru'
-set :deploy_to, '/home/wordside/www/wordside.ru'
+set :domain, 'ovz1.klekot.zm9y1.vps.jino.ru'
+set :deploy_to, '/var/www/domains/wordside.ru'
 set :repository, 'https://github.com/klekot/wordside.git'
 set :branch, 'master'
 
@@ -23,8 +23,8 @@ set :branch, 'master'
 set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'config/application.yml', 'log']
 
 # Optional settings:
-set :user, 'wordside'    # Username in the server to SSH to.
-set :port, '65000'     # SSH port number.
+set :user, 'deploy'    # Username in the server to SSH to.
+set :port, '49414'     # SSH port number.
 #   set :forward_agent, true     # SSH forward_agent.
 
 # This task is the environment that is loaded for most commands, such as
