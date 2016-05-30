@@ -102,7 +102,6 @@ GEM
     passenger (5.0.27)
       rack
       rake (>= 0.8.1)
-    pg (0.18.4)
     powerpack (0.1.1)
     rack (1.6.4)
     rack-test (0.6.3)
@@ -202,7 +201,6 @@ DEPENDENCIES
   mysql2
   nokogiri
   passenger
-  pg
   rails (= 4.2.6)
   rubocop
   sass-rails (>= 3.2)
