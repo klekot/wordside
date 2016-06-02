@@ -10,8 +10,8 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :domain, 'ovz1.klekot.zm9y1.vps.jino.ru'
-set :deploy_to, '/var/www/domains/wordside.ru'
+set :domain, '188.225.39.40'
+set :deploy_to, '/home/deploy/www/wordside.ru'
 set :repository, 'https://github.com/klekot/wordside.git'
 set :branch, 'master'
 
@@ -24,7 +24,7 @@ set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'config/applica
 
 # Optional settings:
 set :user, 'deploy'    # Username in the server to SSH to.
-set :port, '49414'     # SSH port number.
+set :port, '22'     # SSH port number.
 #   set :forward_agent, true     # SSH forward_agent.
 
 # This task is the environment that is loaded for most commands, such as
