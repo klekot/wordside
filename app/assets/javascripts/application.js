@@ -16,7 +16,9 @@
 //= require turbolinks
 //= require_tree .
 
-	function openSidebar() {
-	  	open("sidebar/index", "Word Side",
-	  	"titlebar=no,screenX=10000,width=300,height=window.screen.availHeight,status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=no");
-	}
+  function openSidebar() {
+    vocabularyWidth  = window.screen.availWidth/6.4
+		vocabularyHeight = window.screen.availHeight
+    open("sidebar/index", "_blank",
+         "titlebar=no,screenX=10000,width=" + vocabularyWidth + ",height=" + vocabularyHeight + ",status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=no");
+  }
