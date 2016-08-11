@@ -15,9 +15,11 @@ class SidebarController < ApplicationController
 
   def search(query)
     @query = query
+    @counter = count(@query)[0]
+    #@counter_updated_at = count(@query)[1].strftime("Last request: %d.%m.%Y")
     unless @advanced == 'on'
       result = Article.where(title: @query)
-      @translation = {}   
+      @translation = {}
       if result.size > 0
         result.each do |r|
           key = r.title
@@ -27,7 +29,7 @@ class SidebarController < ApplicationController
             unless Article.find_by(title: title_alias).nil?
               @translation[key + " = " + title_alias] = format_response Article.find_by(title: title_alias).description
             else
-              yandex(@query)         
+              yandex(@query)
             end
           else
             yandex(@query)
@@ -42,7 +44,7 @@ class SidebarController < ApplicationController
       if result.size > 0
         @translation = []
         result.each do |r|
-          translation_hash = {} 
+          translation_hash = {}
           key = r.title
           val = format_response language_colorize r.description
           translation_hash[key] = val
@@ -149,77 +151,77 @@ class SidebarController < ApplicationController
   end
 
   def format_response(response)
-		response
+    response
     .gsub("v.; modal", "<span class=\"serv-word-blue-italic\">модальный глагол: </span>")
-    .gsub(";",      ";<br>")
-    .gsub(",",      ", ")
-    .gsub(", ",     ", ")
-    .gsub(")",      ") ")
-    .gsub("(I)",    "    <span class=\"serv-word-blue\">Первое зачение</span><br>")
-    .gsub("(II)",   "<br><br><span class=\"serv-word-blue\">Второе зачение</span>")
-		.gsub("(III)",  "<br><br><span class=\"serv-word-blue\">Третье зачение</span>")
-    .gsub("(IV)",   "<br><br><span class=\"serv-word-blue\">Четвёртое зачение</span>")
-		.gsub("(V)",    "<br><br><span class=\"serv-word-blue\">Пятое зачение</span>")
-    .gsub("(VI)",   "<br><br><span class=\"serv-word-blue\">Шестое зачение</span>")
-    .gsub("(VII)",  "<br><br><span class=\"serv-word-blue\">Седьмое зачение</span>")
-    .gsub("(VIII)", "<br><br><span class=\"serv-word-blue\">Восьмое зачение</span>")
-    .gsub("(IX)",   "<br><br><span class=\"serv-word-blue\">Девятое зачение</span>")
-    .gsub("(X)",    "<br><br><span class=\"serv-word-blue\">Десятое зачение</span>")
-		.gsub("1)",     "<br><span class=\"serv-word-green\">\t1)</span>")
-    .gsub("2)",     "<br><span class=\"serv-word-green\">\t2)</span>")
-    .gsub("3)",     "<br><span class=\"serv-word-green\">\t3)</span>")
-    .gsub("4)",     "<br><span class=\"serv-word-green\">\t4)</span>")
-		.gsub("5)",     "<br><span class=\"serv-word-green\">\t5)</span>")
-    .gsub("6)",     "<br><span class=\"serv-word-green\">\t6)</span>")
-    .gsub("7)",     "<br><span class=\"serv-word-green\">\t7)</span>")
-    .gsub("8)",     "<br><span class=\"serv-word-green\">\t8)</span>")
-		.gsub("9)",     "<br><span class=\"serv-word-green\">\t9)</span>")
-    .gsub("10)",    "<br><span class=\"serv-word-green\">\t10)</span>")
-    .gsub("11)",    "<br><span class=\"serv-word-green\">\t11)</span>")
-    .gsub("12)",    "<br><span class=\"serv-word-green\">\t12)</span>")
-    .gsub("1.",     "<br><span class=\"serv-word-orange\">1. </span>")
-    .gsub("2.",     "<br><span class=\"serv-word-orange\">2. </span>")
-    .gsub("3.",     "<br><span class=\"serv-word-orange\">3. </span>")
-    .gsub("4.",     "<br><span class=\"serv-word-orange\">4. </span>")
-    .gsub("5.",     "<br><span class=\"serv-word-orange\">5. </span>")
-    .gsub("6.",     "<br><span class=\"serv-word-orange\">6. </span>")
-    .gsub("7.",     "<br><span class=\"serv-word-orange\">7. </span>")
-    .gsub("8.",     "<br><span class=\"serv-word-orange\">8. </span>")
-    .gsub("9.",     "<br><span class=\"serv-word-orange\">9. </span>")
-    .gsub("10.",    "<br><span class=\"serv-word-orange\">10. </span>")
-    .gsub("11.",    "<br><span class=\"serv-word-orange\">11. </span>")
-    .gsub("12.",    "<br><span class=\"serv-word-orange\">12. </span>")
-    .gsub("13.",    "<br><span class=\"serv-word-orange\">13. </span>")
-    .gsub("Syn: ",    "<br><span class=\"serv-word-violet\">Синонимы: </span>")
-    .gsub("Ant: ",    "<br><span class=\"serv-word-sienna\">Антонимы: </span>")
+    .gsub(";",         ";<br>")
+    .gsub(",",         ", ")
+    .gsub(", ",        ", ")
+    .gsub(")",         ") ")
+    .gsub("(I)",       "    <span class=\"serv-word-blue\">Первое зачение</span><br>")
+    .gsub("(II)",      "<br><br><span class=\"serv-word-blue\">Второе зачение</span>")
+    .gsub("(III)",     "<br><br><span class=\"serv-word-blue\">Третье зачение</span>")
+    .gsub("(IV)",      "<br><br><span class=\"serv-word-blue\">Четвёртое зачение</span>")
+    .gsub("(V)",       "<br><br><span class=\"serv-word-blue\">Пятое зачение</span>")
+    .gsub("(VI)",      "<br><br><span class=\"serv-word-blue\">Шестое зачение</span>")
+    .gsub("(VII)",     "<br><br><span class=\"serv-word-blue\">Седьмое зачение</span>")
+    .gsub("(VIII)",    "<br><br><span class=\"serv-word-blue\">Восьмое зачение</span>")
+    .gsub("(IX)",      "<br><br><span class=\"serv-word-blue\">Девятое зачение</span>")
+    .gsub("(X)",       "<br><br><span class=\"serv-word-blue\">Десятое зачение</span>")
+    .gsub("1)",        "<br><span class=\"serv-word-green\">\t1)</span>")
+    .gsub("2)",        "<br><span class=\"serv-word-green\">\t2)</span>")
+    .gsub("3)",        "<br><span class=\"serv-word-green\">\t3)</span>")
+    .gsub("4)",        "<br><span class=\"serv-word-green\">\t4)</span>")
+    .gsub("5)",        "<br><span class=\"serv-word-green\">\t5)</span>")
+    .gsub("6)",        "<br><span class=\"serv-word-green\">\t6)</span>")
+    .gsub("7)",        "<br><span class=\"serv-word-green\">\t7)</span>")
+    .gsub("8)",        "<br><span class=\"serv-word-green\">\t8)</span>")
+    .gsub("9)",        "<br><span class=\"serv-word-green\">\t9)</span>")
+    .gsub("10)",       "<br><span class=\"serv-word-green\">\t10)</span>")
+    .gsub("11)",       "<br><span class=\"serv-word-green\">\t11)</span>")
+    .gsub("12)",       "<br><span class=\"serv-word-green\">\t12)</span>")
+    .gsub("1.",        "<br><span class=\"serv-word-orange\">1. </span>")
+    .gsub("2.",        "<br><span class=\"serv-word-orange\">2. </span>")
+    .gsub("3.",        "<br><span class=\"serv-word-orange\">3. </span>")
+    .gsub("4.",        "<br><span class=\"serv-word-orange\">4. </span>")
+    .gsub("5.",        "<br><span class=\"serv-word-orange\">5. </span>")
+    .gsub("6.",        "<br><span class=\"serv-word-orange\">6. </span>")
+    .gsub("7.",        "<br><span class=\"serv-word-orange\">7. </span>")
+    .gsub("8.",        "<br><span class=\"serv-word-orange\">8. </span>")
+    .gsub("9.",        "<br><span class=\"serv-word-orange\">9. </span>")
+    .gsub("10.",       "<br><span class=\"serv-word-orange\">10. </span>")
+    .gsub("11.",       "<br><span class=\"serv-word-orange\">11. </span>")
+    .gsub("12.",       "<br><span class=\"serv-word-orange\">12. </span>")
+    .gsub("13.",       "<br><span class=\"serv-word-orange\">13. </span>")
+    .gsub("Syn: ",     "<br><span class=\"serv-word-violet\">Синонимы: </span>")
+    .gsub("Ant: ",     "<br><span class=\"serv-word-sienna\">Антонимы: </span>")
     .gsub("^Syn: ",    "<br><span class=\"serv-word-violet\">Синонимы: </span>")
     .gsub("^Ant: ",    "<br><span class=\"serv-word-sienna\">Антонимы: </span>")
-    .gsub("adv.",    "<span class=\"serv-word-blue-italic\"> наречие: </span>")
-    .gsub("prov.",    "<span class=\"serv-word-blue-italic\"> Поговорка: </span>")
-    .gsub("^adv.",    "<span class=\"serv-word-blue-italic\"> наречие: </span>")
-    .gsub("v.",    "<span class=\"serv-word-blue-italic\">глагол: </span>")
-    .gsub("v.;",    "<span class=\"serv-word-blue-italic\">глагол: </span>")
-    .gsub("v.; ",    "<span class=\"serv-word-blue-italic\">глагол: </span>")
-    .gsub("^v.",    "<span class=\"serv-word-blue-italic\">глагол: </span>")
-    .gsub("^v.;",    "<span class=\"serv-word-blue-italic\">глагол: </span>")
-    .gsub("^v.; ",    "<span class=\"serv-word-blue-italic\">глагол: </span>")
-    .gsub("noun",    "<span class=\"serv-word-blue-italic\"> имя существительное: </span>")
-    .gsub("noun.",    "<span class=\"serv-word-blue-italic\"> имя существительное: </span>")  
-    .gsub("^noun",    "<span class=\"serv-word-blue-italic\"> имя существительное: </span>")
+    .gsub("adv.",      "<span class=\"serv-word-blue-italic\"> наречие: </span>")
+    .gsub("prov.",     "<span class=\"serv-word-blue-italic\"> Поговорка: </span>")
+    .gsub("^adv.",     "<span class=\"serv-word-blue-italic\"> наречие: </span>")
+    .gsub("v.",        "<span class=\"serv-word-blue-italic\">глагол: </span>")
+    .gsub("v.;",       "<span class=\"serv-word-blue-italic\">глагол: </span>")
+    .gsub("v.; ",      "<span class=\"serv-word-blue-italic\">глагол: </span>")
+    .gsub("^v.",       "<span class=\"serv-word-blue-italic\">глагол: </span>")
+    .gsub("^v.;",      "<span class=\"serv-word-blue-italic\">глагол: </span>")
+    .gsub("^v.; ",     "<span class=\"serv-word-blue-italic\">глагол: </span>")
+    .gsub("noun",      "<span class=\"serv-word-blue-italic\"> имя существительное: </span>")
+    .gsub("noun.",     "<span class=\"serv-word-blue-italic\"> имя существительное: </span>")
+    .gsub("^noun",     "<span class=\"serv-word-blue-italic\"> имя существительное: </span>")
     .gsub("^noun.",    "<span class=\"serv-word-blue-italic\"> имя существительное: </span>")
-    .gsub("pron.",    "<span class=\"serv-word-blue-italic\"> местоимение: </span>")
-    .gsub("cj.",    "<span class=\"serv-word-blue-italic\"> союз: </span>")
-    .gsub("^cj.",    "<span class=\"serv-word-blue-italic\"> союз: </span>")
-    .gsub("adj.",    "<span class=\"serv-word-blue-italic\"> имя прилагательное: </span>")
-    .gsub("^adj.",    "<span class=\"serv-word-blue-italic\"> имя прилагательное: </span>")
-    .gsub("attr.",    "<span class=\"serv-word-teal\"> (свойство) </span>")
+    .gsub("pron.",     "<span class=\"serv-word-blue-italic\"> местоимение: </span>")
+    .gsub("cj.",       "<span class=\"serv-word-blue-italic\"> союз: </span>")
+    .gsub("^cj.",      "<span class=\"serv-word-blue-italic\"> союз: </span>")
+    .gsub("adj.",      "<span class=\"serv-word-blue-italic\"> имя прилагательное: </span>")
+    .gsub("^adj.",     "<span class=\"serv-word-blue-italic\"> имя прилагательное: </span>")
+    .gsub("attr.",     "<span class=\"serv-word-teal\"> (свойство) </span>")
     .gsub("indef.",    "<span class=\"serv-word-teal\"> (неопределённое) </span>")
     .gsub("inter.",    "<span class=\"serv-word-teal\"> (вопросительное) </span>")
-    .gsub("abbr. of",    "<span class=\"serv-word-teal\"> сокращение от </span>")
-    .gsub("coll.",    "<span class=\"serv-word-teal\"> (в переносном смысле) </span>")
-    .gsub("pl.",    "<span class=\"serv-word-teal\"> (множественное число) </span>")
-    .gsub(".;<br>",      ".;")
-	end
+    .gsub("abbr. of",  "<span class=\"serv-word-teal\"> сокращение от </span>")
+    .gsub("coll.",     "<span class=\"serv-word-teal\"> (в переносном смысле) </span>")
+    .gsub("pl.",       "<span class=\"serv-word-teal\"> (множественное число) </span>")
+    .gsub(".;<br>",    ".;")
+  end
 
   def language_colorize(text)
     array = text.split(' ')
@@ -228,5 +230,17 @@ class SidebarController < ApplicationController
       array[index] = "<span class=\"rus-word\">" + word + "</span>" if @@rus_alphabet.include? word.chr
     end
     array.join(' ')
+  end
+
+  def count(query)
+    unless Counter.find_by(article: Article.find_by(title: @query).id, user: current_user.id).nil?
+      counter  = Counter.find_by(article_id: Article.find_by(title: @query).id, user_id: current_user.id)
+      counter.counter += 1
+      counter.save
+    else
+      counter  = Counter.new(counter: 1, article_id: Article.find_by(title: @query).id, user_id: current_user.id)
+      counter.save
+    end
+    [counter.counter, counter.updated_at]
   end
 end
