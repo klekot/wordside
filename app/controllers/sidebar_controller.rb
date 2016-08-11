@@ -233,12 +233,14 @@ class SidebarController < ApplicationController
   end
 
   def count(query)
-    unless Counter.find_by(article: Article.find_by(title: @query).id, user: current_user.id).nil?
-      counter  = Counter.find_by(article_id: Article.find_by(title: @query).id, user_id: current_user.id)
+    article = Article.find_by(title: @query).id unless Article.find_by(title: @query).nil?
+    user    = current_user.id unless current_user.nil?
+    unless Counter.find_by(article_id: article, user_id: user).nil?
+      counter  = Counter.find_by(article_id: article, user_id: user)
       counter.counter += 1
       counter.save
     else
-      counter  = Counter.new(counter: 1, article_id: Article.find_by(title: @query).id, user_id: current_user.id)
+      counter  = Counter.new(counter: 1, article_id: article, user_id: user)
       counter.save
     end
     [counter.counter, counter.updated_at]
