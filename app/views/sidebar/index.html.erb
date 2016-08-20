@@ -48,7 +48,13 @@
       <% if @query %>
         <% @translation.each_pair do |key, val| %>
           <% unless @transcription.nil? %>
-            <h3 style="color: red"><%= key +  "  " %><span class="badge"><%= @counter %></span></h3>
+            <h3 style="color: red">
+              <% if user_signed_in? %>
+                <%= key +  "  " %><span class="badge"><%= @counter %></span>
+              <% else %>
+                <%= key %>
+              <% end %>
+            </h3>
             <h3 style="color: orange"><%= "[" + @transcription.to_s + "]" %></h3>
           <% else %>
             <h3 style="color: red"><%= key %></h3>

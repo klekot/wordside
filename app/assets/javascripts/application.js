@@ -16,9 +16,10 @@
 //= require turbolinks
 //= require_tree .
 
-  function openSidebar() {
-    vocabularyWidth  = window.screen.availWidth/6.4
-		vocabularyHeight = window.screen.availHeight
+function openSidebar() {
+    // "use strict"; - do not comment out this statement, because script will not work...
+    vocabularyWidth  = window.screen.availWidth / 6.4;
+    vocabularyHeight = window.screen.availHeight;
     open("sidebar/index", "_blank",
-         "titlebar=no,screenX=10000,width=" + vocabularyWidth + ",height=" + vocabularyHeight + ",status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=no");
-  }
+        "titlebar=no,screenX=10000,width=" + vocabularyWidth + ",height=" + vocabularyHeight + ",status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=no");
+}
