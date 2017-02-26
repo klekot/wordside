@@ -1,0 +1,10 @@
+h2
+  = @apply
+hr
+ul
+  - @modified_articles.each do |ma|
+    li
+      = ma.title
+br
+hr
+= link_to "Edit DB Page", home_edit_path

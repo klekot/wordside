@@ -1,0 +1,10 @@
+nav.navbar.navbar-default[role="navigation"]
+  .container
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        - if user_signed_in?
+          li
+            = link_to "Выход", destroy_user_session_path
+        - else
+          li
+            = link_to "Вход | Регистрация", new_user_session_path

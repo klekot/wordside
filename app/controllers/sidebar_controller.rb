@@ -16,7 +16,6 @@ class SidebarController < ApplicationController
   def search(query)
     @query = query
     @counter = count(@query)[0]
-    #@counter_updated_at = count(@query)[1].strftime("Last request: %d.%m.%Y")
     unless @advanced == 'on'
       result = Article.where(title: @query)
       @translation = {}

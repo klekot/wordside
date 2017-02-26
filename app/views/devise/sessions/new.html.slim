@@ -1,0 +1,24 @@
+.container
+  .row
+    .col-md-4
+    .col-md-4
+      = form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-signin") do |f|
+        h2.form-signin-heading[align="center"]
+          | Вход
+        .field
+          = f.label :email
+          br
+          = f.email_field :email, autofocus: true, class: "form-control"
+        .field
+          = f.label "Пароль"
+          br
+          = f.password_field :password, autocomplete: "off", class: "form-control"
+        - if devise_mapping.rememberable?
+          .field
+            = f.check_box :remember_me, class: "checkbox"
+            = f.label "Запомнить меня"
+        .actions
+          = f.submit "Войти", class: "btn btn-lg btn-primary btn-block"
+      br
+      = render "devise/shared/links"
+    .col-md-4

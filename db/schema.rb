@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(version: 20160719071048) do
 
   create_table "articles", force: :cascade do |t|
-    t.string "title",       limit: 255,        null: false
-    t.text   "description", limit: 4294967295
+    t.string "title",       limit: 255
+    t.text   "description", limit: 65535
   end
 
   create_table "counters", force: :cascade do |t|

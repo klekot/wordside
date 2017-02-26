@@ -1,0 +1,19 @@
+form
+  input[type="text" name="statement"]
+- if @statement
+  p
+    | Поиск по выражению: 
+    b
+      = "#{@statement}"
+  form
+    |  <input type="hidden" value=
+    = "#{@statement}"
+    |  name="apply" > 
+    input[type="submit" value="Apply changes to DB"]
+  ul
+    - @selected_articles.each do |a|
+      li
+        = a.title
+- else
+  p
+    | no statement

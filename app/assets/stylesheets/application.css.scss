@@ -20,84 +20,84 @@
 
 /* responsive text queries */
 @media screen and (max-width: 30000px) {
-	h1 {
-		font-family: 'Freckle Face', cursive;
-		font-size: 7em;
-	}
+  h1 {
+    font-family: 'Freckle Face', cursive;
+    font-size: 7em;
+  }
 }
 @media screen and (max-width: 1100px) {
-	h1 {
-		font-family: 'Freckle Face', cursive;
-		font-size: 6em;
-	}
+  h1 {
+    font-family: 'Freckle Face', cursive;
+    font-size: 6em;
+  }
 }
 @media screen and (max-width: 950px) {
-	h1 {
-		font-family: 'Freckle Face', cursive;
-		font-size: 5em;
-	}
+  h1 {
+    font-family: 'Freckle Face', cursive;
+    font-size: 5em;
+  }
 }
 @media screen and (max-width: 800px) {
-	h1 {
-		font-family: 'Freckle Face', cursive;
-		font-size: 4em;
-	}
+  h1 {
+    font-family: 'Freckle Face', cursive;
+    font-size: 4em;
+  }
 }
 @media screen and (max-width: 600px) {
-	h1 {
-		font-family: 'Freckle Face', cursive;
-		font-size: 3em;
-	}
+  h1 {
+    font-family: 'Freckle Face', cursive;
+    font-size: 3em;
+  }
 }
 @media screen and (max-width: 450px) {
-	h1 {
-		font-family: 'Freckle Face', cursive;
-		font-size: 2em;
-	}
+  h1 {
+    font-family: 'Freckle Face', cursive;
+    font-size: 2em;
+  }
 }
 html,
 body {
-	margin:0;
-	padding:0;
-	height:100%;
-	overflow-x: hidden;
-	overflow-y: auto;
+  margin:0;
+  padding:0;
+  height:100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 #wrapper {
-	padding-top: 50px;
-	position:relative;
+  padding-top: 50px;
+  position:relative;
 }
 #header {
-	background:#ffffff;
-	padding:10px;
+  background:#ffffff;
+  padding:10px;
 }
 #content {
-	padding-bottom:10px; /* Height of the footer element */
+  padding-bottom:10px; /* Height of the footer element */
 }
 .footer {
- 	background:#333ccc;
- 	color: #fff;
-	font-size: 10px;
-	height: 60px;
-	position: absolute;
-	padding: 10px;
-	bottom: 0px;
-	width: 100%;
-	a {
-		color: #fff;
-	}
+   background:#333ccc;
+   color: #fff;
+  font-size: 10px;
+  height: 60px;
+  position: absolute;
+  padding: 10px;
+  bottom: 0px;
+  width: 100%;
+  a {
+    color: #fff;
+  }
 }
 em {
-	font-family: 'Loved by the King', cursive;
-	font-size: 24px;
+  font-family: 'Loved by the King', cursive;
+  font-size: 24px;
 }
 .center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #translation {
-	font-size: 16px;
+  font-size: 16px;
 }
 .form-signin {
   max-width: 330px;

@@ -1,0 +1,93 @@
+p.notice
+  = notice
+p.alert
+  = alert
+.center
+  h1
+    span[style="color: red;"]
+      | W
+    span[style="color: green;"]
+      | e
+    span[style="color: yellow;"]
+      | l
+    span[style="color: blue;"]
+      | c
+    span[style="color: black;"]
+      | o
+    span[style="color: green;"]
+      | m
+    span[style="color: red;"]
+      | e 
+    span[style="color: #345;"]
+      | t
+    span[style="color: #934;"]
+      | o 
+    span[style="color: #194;"]
+      | W
+    span[style="color: #210;"]
+      | o
+    span[style="color: #695;"]
+      | r
+    span[style="color: #ff2;"]
+      | d
+    span[style="color: red;"]
+      | S
+    span[style="color: #ff4;"]
+      | i
+    span[style="color: #00f;"]
+      | d
+    span[style="color: orange;"]
+      | e
+    span[style="color: #cc4;"]
+      | .
+    span[style="color: blue;"]
+      | r
+    span[style="color: #ed6;"]
+      | u
+.center.open-button
+  p
+    label.btn.btn-lg.btn-danger[for="openWordSide"]
+      | Открыть WordSide 
+      span.glyphicon.glyphicon-hand-right[aria-hidden="true"]
+    input#openWordSide.hidden[name="btnOpenSidebar" type="button" value="Открыть WordSide" onclick="openSidebar()"]
+br
+.center
+  a.link.link-description[role="text" data-toggle="collapse" href="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription"]
+    |  Что будет если нажать на красную кнопку? 
+#collapseDescription.collapse
+  .well.well-lg
+    p.description[style="font-size: 16px;"]
+      |  Прежде всего, убедитесь, что ваш браузер не в полноэкранном режиме. При нажати на кнопку справа откроется узкое вертикальное окно браузера, в котором вы увидите обычное текстовое поле. В него вы можете вводить незнакомые английские слова, встречаемые вами при чтении текста в основном окне браузера, а в ответ получать варианты перевода.
+      br
+      | В качестве базы для перевода используется 
+      b
+        | Англо-Русский Словарь под ред. Мюллера "66.000 слов + СПИСОК ЛИЧНЫХ ИМЕН" Издание 24, исправленное Москва, "Русский язык", 1995 г. OCR Палек, 1998 г.
+      |  Кроме того, когда Мюллер не справляется, на помошь приходит 
+      a[href="http://api.yandex.ru/dictionary/"]
+        | "API Яндекс.Словаря"
+      | .
+      br
+      | Для большего удобства мы рекомендуем вам отодвинуть правый край основного окна вашего браузера ровно на триста пикселей влево и тогда использование 
+      b
+        span[style="color: #194;"]
+          | W
+        span[style="color: #210;"]
+          | o
+        span[style="color: #695;"]
+          | r
+        span[style="color: #cc4;"]
+          | d
+        span[style="color: red;"]
+          | S
+        span[style="color: #ff4;"]
+          | i
+        span[style="color: #00f;"]
+          | d
+        span[style="color: orange;"]
+          | e
+      |  станет максимально комфортным! So, press the button and have a nice translating! 
+  .alert.alert-danger[role="alert"]
+    p[style="font-size: 14px;"]
+      strong
+        | Объявление: 
+      | Сайт работает в режиме "альфа-тестирования", поэтому многие функции и детали интерфейса могут измениться, появиться или исчезнуть :) Просьба не рассматривать это приложение как завершённый продукт. Благодарим за внимание! 
