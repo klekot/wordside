@@ -106,6 +106,7 @@ class SidebarController < ApplicationController
         output_html = []
         Hash.from_xml(xml_result.to_s)["DicResult"]["def"].each do |def_tag|
           if def_tag["tr"].is_a? Hash
+            unless def_tag["tr"]["pos"] then def_tag["tr"].store("pos", "") end
             syns = []
             unless def_tag["tr"]["syn"].nil?
               if def_tag["tr"]["syn"].is_a? Array
