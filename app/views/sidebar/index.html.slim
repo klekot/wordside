@@ -8,7 +8,7 @@ style[type="text/css"]
           = image_tag image_path('logo3.png')
       - if user_signed_in?
         p
-          = "Текущий аккаунт: " + current_user.email
+          = 'Текущий аккаунт: ' + current_user.email
   .row
     .col-xs-12.scrolled-y
       - if flash[:alert]
@@ -27,29 +27,29 @@ style[type="text/css"]
           - unless @transcription.nil?
             h3[style="color: red"]
               - if user_signed_in?
-                = key +  "  "
+                = key + '  '
                 span.badge
                   = @counter
               - else
                 = key
             h3[style="color: orange"]
-              = "[" + @transcription.to_s + "]"
+              = '[' + @transcription.to_s + ']'
           - else
             h3[style="color: red"]
               = key
           - unless val.nil?
             - if val.is_a? Array
-              p#translation
+              p.translation
                 - val.each do |val_tag|
                   - unless val_tag == val.last
-                    = val_tag["text"].html_safe + ", "
+                    = val_tag['text'].html_safe + ', '
                   - else
-                    = val_tag["text"].html_safe + "."
+                    = val_tag['text'].html_safe + '.'
             - else
-              p#translation
+              p.translation
                 = val.html_safe
           - else
-            p#translation
+            p.translation
               | Перевод для вашего запроса отсутствует в нашем словаре :( 
               br
               | Если запос состоит из нескольких слов (например, вам нужен перевод модального глагола или сленгового выражения), попробуйте переформулировать запрос иначе. Может быть и найдется что-нибудь...
