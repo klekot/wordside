@@ -8,12 +8,13 @@ gem 'devise'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
+gem 'mini_racer'
 gem 'mysql2', '~> 0.4.0'
 gem 'nokogiri'
 gem 'rails', '4.2.10'
 gem 'sass-rails', '>= 3.2'
 gem 'slim'
-gem 'therubyracer', platforms: :ruby
+# gem 'therubyracer', platforms: :ruby
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
