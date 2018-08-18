@@ -13,7 +13,7 @@ gem 'nokogiri'
 gem 'rails', '4.2.10'
 gem 'sass-rails', '>= 3.2'
 gem 'slim'
-gem 'therubyracer'
+gem 'therubyracer', platforms: :ruby
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
